@@ -1,0 +1,25 @@
+version: '3.8'
+
+# Docker Compose for PostgreSQL service
+volumes:
+  postgres_data:
+
+networks:
+  postgres_network:
+    driver: bridge
+
+services:
+  # PostgreSQL service for general usage
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - postgres_network
